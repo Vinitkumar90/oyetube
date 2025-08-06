@@ -1,10 +1,40 @@
 import React from 'react'
+import Navbar from './components/Navbar'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router";
+import MainContainer from './components/MainContainer';
+import HomeMain from './components/HomeMain';
+import VideoPlayer from './components/VideoPlayer';
+import { Provider } from 'react-redux';
+import store from "./utils/store"
+
+const appRouter = createBrowserRouter([
+  {
+    path:"/",
+    element:<MainContainer/>,
+    children : [
+      {
+        path:"/",
+        element:<HomeMain/>
+      }, 
+      {
+        path:"/video",
+        element:<VideoPlayer/>
+      }
+    ]
+  }
+])
 
 const App = () => {
   return (
-    <div className='bg-red-600'>
-      this is app
-    </div>
+    <>
+    <Provider store={store}>
+      <Navbar/>
+      <RouterProvider router={appRouter} />
+      </Provider>
+    </>
   )
 }
 
