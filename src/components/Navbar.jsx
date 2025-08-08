@@ -2,16 +2,19 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { FiSearch } from "react-icons/fi";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdOutlineSearch } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appslice";
-import { useEffect, useState } from "react";
+import { cache, useEffect, useState } from "react";
 import { SEARCH_URL } from "../utils/constants";
+import { cacheSuggestions } from "../utils/searchSlice";
+
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const searchCache = useSelector((store) => store.search.suggestionsCache);
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestion, setSuggestions] = useState([]);
-  const[showSuggestion , setShowSuggestion] = useState(false);
+  const [showSuggestion, setShowSuggestion] = useState(false);
 
   function handleMenu() {
     console.log("Hamburger menu clicked");
@@ -19,16 +22,24 @@ const Navbar = () => {
   }
 
   const suggestionkaro = async () => {
+    const cached = searchCache[searchQuery];
+    if (cached) {
+      setSuggestions(cached);
+      return;
+    }
+
     const data = await fetch(SEARCH_URL + searchQuery);
+    console.log("api call gaya");
     const json = await data.json();
-    console.log(json);
     setSuggestions(json[1]);
+
+    dispatch(cacheSuggestions({ query: searchQuery, suggestions: json[1] }));
   };
 
   useEffect(() => {
     const unsubscribe = setTimeout(() => {
       suggestionkaro();
-    }, 200);
+    }, 400);
 
     return () => {
       clearTimeout(unsubscribe);
@@ -37,12 +48,12 @@ const Navbar = () => {
 
   return (
     <div className=" fixed w-screen top-0 flex items-center justify-between px-8 py-3 shadow mb-2 bg-white z-50">
-      <div className="flex items-center" onClick={handleMenu}>
-        <RxHamburgerMenu className="text-neutral-800 text-2xl" />
-        <h1 className="px-2 text-4xl mx-2 font-mono text-neutral-700">
-          oyetube
-        </h1>
+
+      <div className="flex items-center gap-4">
+        <RxHamburgerMenu className="text-neutral-800 text-2xl cursor-pointer" onClick={handleMenu} />
+        <h1 className="text-4xl font-mono">oyetube</h1>
       </div>
+
 
       <div className="flex items-center">
         <input
@@ -50,9 +61,11 @@ const Navbar = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => setShowSuggestion(true)}
-          onBlur={() => (setTimeout(() => {
-              setShowSuggestion(false)
-          }, 200))}
+          onBlur={() =>
+            setTimeout(() => {
+              setShowSuggestion(false);
+            }, 200)
+          }
           placeholder="Search"
           className="focus:outline-none p-[7px] pl-4 rounded-l-full w-xl text-neutral-800  border-neutral-300 border-2 border-r-0"
         />

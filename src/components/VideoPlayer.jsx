@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sideOff, toggleMenu } from "../utils/appslice";
 import Sidebar from "./Sidebar";
 import { useSearchParams } from "react-router";
+import CommentsContainer from "./CommentsContainer";
 
 const VideoPlayer = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,9 @@ const VideoPlayer = () => {
     <div className=" w-screen h-screen">
       <Sidebar />
 
-      <div className={`${showSidebar ? `ml-56` : `ml-24`} mt-16 bg-blue-600 h-full p-2 `}>
+      <div className={`${showSidebar ? `ml-56` : `ml-24`} mt-16 h-full p-2 grid grid-cols-[1.4fr_1.6fr] grid-rows-[200px 400px] gap-2 `}>
+
+        <div className="bg-gray-200">
         <iframe
           width="900"
           height="500"
@@ -31,9 +34,20 @@ const VideoPlayer = () => {
           referrerpolicy="strict-origin-when-cross-origin"
           allowFullScreen
         ></iframe>
-        <h1>live chat</h1>
-        <h2>comment</h2>
+        </div>
+
+        <div className="bg-white h-full">
+          <h1>live chat</h1>
+        </div>
+
+        <div >
+          <div className="border border-b-neutral-200 shadow"></div>
+          <CommentsContainer/>
+        </div>
+        
+
       </div>
+
     </div>
   );
 };

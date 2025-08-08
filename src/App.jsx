@@ -33,7 +33,7 @@ const App = () => {
     <Provider store={store}>
       <Navbar/>
       <RouterProvider router={appRouter} />
-      </Provider>
+    </Provider>
     </>
   )
 }
