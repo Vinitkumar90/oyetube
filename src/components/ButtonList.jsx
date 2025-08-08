@@ -1,13 +1,13 @@
-import { buttonListItem } from "../Utils/constants";
+import { buttonListItem } from "../utils/constants";
 
 const ButtonList = () => {
   return (
-    <div>
+    <div className="p-3  fixed top-16 bg-white w-full" >
       <div className="flex gap-3">
         {buttonListItem.map((btn, i) => (
           <p
             key={i}
-            className=" cursor-pointer px-4 py-1 text-sm rounded-xl"
+            className=" cursor-pointer border border-gray-400 px-2 py-1 rounded-xl  bg-gray-100 w-x text-center"
           >
             {btn}
           </p>
