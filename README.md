@@ -1,12 +1,22 @@
-# React + Vite
+# Used youtube api for OYETUBE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## feed videos via api (json to video card mapped )
 
-Currently, two official plugins are available:
+<img width="1902" height="972" alt="Screenshot 2025-08-10 220124" src="https://github.com/user-attachments/assets/c0902ca9-317f-4e29-87d5-373589a5ad01" />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## search results via api 
+- debouncing api requests
+- caching the search result for queries
+- 
+  <img width="1870" height="946" alt="Screenshot 2025-08-10 220147" src="https://github.com/user-attachments/assets/d8b1276b-474c-4d0e-8a45-0a0095049bb0" />
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## with i frame and video id plating video here 
+<img width="1902" height="958" alt="Screenshot 2025-08-10 220224" src="https://github.com/user-attachments/assets/82f2cd80-9438-4566-b880-d47e9bdeb1d0" />
+
+
+## commnet and live chat implementation with hardcoded data
+- comment component uses recursion
+- live chat with redux 
+<img width="1845" height="859" alt="Screenshot 2025-08-10 220255" src="https://github.com/user-attachments/assets/041baf5a-14cd-458a-9654-bcc2589c96b1" />
