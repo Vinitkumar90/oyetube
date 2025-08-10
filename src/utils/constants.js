@@ -12,7 +12,7 @@ export const buttonListItem = [
   "Anime",
 ];
 
-const YOUTUBE_API_KEY = "AIzaSyAx0MxNqN6rxrqhX1b9siWOW9RdX0Pegt8";
+const YOUTUBE_API_KEY = import.meta.env.VITE_API_KEY;
 
 export const YOUTUBE_VIDEOS_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
@@ -96,3 +96,6 @@ export const commentsData = [
     replies: [],
   },
 ];
+
+
+export const LIVE_CHAT_COUNT = 20;

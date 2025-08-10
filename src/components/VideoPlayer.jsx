@@ -4,6 +4,7 @@ import { sideOff, toggleMenu } from "../utils/appslice";
 import Sidebar from "./Sidebar";
 import { useSearchParams } from "react-router";
 import CommentsContainer from "./CommentsContainer";
+import Livechat from "./Livechat";
 
 const VideoPlayer = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const VideoPlayer = () => {
         </div>
 
         <div className="bg-white h-full">
-          <h1>live chat</h1>
+          <Livechat/>
         </div>
 
         <div >
